@@ -1,0 +1,136 @@
+package com.example.teste_spring.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.teste_spring.model.Categoria;
+import com.example.teste_spring.model.Produto;
+import com.example.teste_spring.repository.ProdutoRepository;
+import com.example.teste_spring.repository.CategoriaRepository;
+
+@Service
+public class ProdutoService {
+
+    private final ProdutoRepository produtoRepository;
+    private final CategoriaRepository categoriaRepository;
+
+    // Construtor
+    @Autowired
+    public ProdutoService(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository) {
+        this.produtoRepository = produtoRepository;
+        this.categoriaRepository = categoriaRepository;
+    }
+
+    // Listar todos os produtos
+    public List<Produto> listarTodos() {
+        return produtoRepository.findAll();
+    }
+
+    // Salvar novo produto
+    public Produto salvarProduto(Produto produto) {
+        return produtoRepository.save(produto);
+    }
+
+    // Atualizar produto pelo ID
+    public Produto atualizarProdutoId(Long id, Produto produto) {
+        if (produtoRepository.existsById(id)) {
+            produto.setId(id);
+            return produtoRepository.save(produto);
+        } else {
+            throw new RuntimeException("Produto não encontrado com o ID: " + id);
+        }
+    }
+
+    // Atualizar preço com base no nome
+    public Produto atualizarProdutoPreco(Double preco, Produto produto) {
+        Produto produtoExistente = produtoRepository.findByNome(produto.getNome());
+        if (produtoExistente == null) {
+            throw new RuntimeException("Produto não encontrado com o nome: " + produto.getNome());
+        }
+
+        produtoExistente.setPreco(preco);
+        return produtoRepository.save(produtoExistente);
+    }
+
+    // Atualizar nome do produto a partir de outro nome
+    public Produto atualizarProdutoNome(String nome, Produto produtoAtualizado) {
+        Produto produtoExistente = produtoRepository.findByNome(nome);
+        if (produtoExistente == null) {
+            throw new RuntimeException("Produto não encontrado com o nome: " + nome);
+        }
+
+        produtoExistente.setNome(produtoAtualizado.getNome());
+        // Atualize outros campos conforme necessidade
+        return produtoRepository.save(produtoExistente);
+    }
+
+    // Deletar produto por ID
+    public void deletarId(Long id) {
+        if (produtoRepository.existsById(id)) {
+            produtoRepository.deleteById(id);
+            System.out.println("Produto deletado com sucesso!");
+        } else {
+            throw new RuntimeException("Produto não encontrado com o ID: " + id);
+        }
+    }
+
+    // Buscar produtos cujo nome começa com uma letra (ignorando case)
+    public List<Produto> findByfindByNomeStartingWithIgnoreCase(String letra) {
+        if (letra.charAt(0) == '*') {
+            letra = letra.substring(1);
+        }
+        return produtoRepository.findByNomeStartingWithIgnoreCase(letra);
+    }
+
+    // Contar número de produtos
+    public int countProdutos() {
+        return (int) produtoRepository.count();
+    }
+
+    // Buscar produtos por faixa de preço
+    public List<Produto> findByPrecoBetween(Double min, Double max) {
+        if (min == null || max == null) {
+            throw new IllegalArgumentException("Valores mínimos e máximos não podem ser nulos");
+        }
+        if (min > max) {
+            throw new IllegalArgumentException("O valor mínimo não pode ser maior que o máximo");
+        }
+
+        return produtoRepository.findAll().stream()
+                .filter(produto -> produto.getPreco() != null &&
+                                   produto.getPreco() >= min &&
+                                   produto.getPreco() <= max)
+                .collect(Collectors.toList());
+    }
+
+    public Produto AtualizarCategoria(String nome, Produto produto) {
+        Produto produtoExistente = produtoRepository.findByNome(nome);
+        if (produtoExistente == null) {
+            throw new RuntimeException("Produto não encontrado com o nome: " + nome);
+        }
+        produtoExistente.setCategoria(produto.getCategoria());
+        return produtoRepository.save(produtoExistente);
+    }
+
+   public List<Produto> findByCategoria(Long categoriaId) {
+        categoriaRepository.findById(categoriaId)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada com o ID: " + categoriaId));
+        return produtoRepository.findAll().stream()
+                .filter(produto -> produto.getCategoria() != null && produto.getCategoria().getCategoriaId().equals(categoriaId))
+                .collect(Collectors.toList());
+   }
+        
+   public List<Produto> findByCategoriaNome(String nome) {
+   // List<Categoria> categorias = categoriaRepository.findByNome(nome);
+    return produtoRepository.findAll().stream()
+            .filter(produto -> produto.getCategoria() != null &&
+                               produto.getCategoria().getNome().equalsIgnoreCase(nome))
+            .collect(Collectors.toList());
+}
+
+
+
+}
