@@ -12,10 +12,11 @@ Este projeto faz parte de um estudo prático que estou desenvolvendo para consol
 - Maven
 
 ## 📚 Objetivo
-- Praticar a organização em camadas: Controller → Service → Repository (DAO).  
+- Praticar a organização em camadas: Controller → Service → Repository → Model.  
 - Aplicar boas práticas como separação de responsabilidades e uso de DTOs.  
 - Utilizar Bean Validation para validação de dados recebidos.  
-- Simular operações básicas de um CRUD de Produtos e Categorias.  
+- Simular operações básicas de um CRUD de Produtos e Categorias.
+- Uso de Endpoints por meio do controller para se comunicar através da web.
 
 ## 📂 Estrutura do Projeto
 - **controller/** → Endpoints da API.  
