@@ -10,6 +10,7 @@ import com.example.teste_spring.model.Categoria;
 import com.example.teste_spring.model.Produto;
 import com.example.teste_spring.repository.ProdutoRepository;
 import com.example.teste_spring.repository.CategoriaRepository;
+import com.example.teste_spring.dto.ProdutoDTO;
 
 @Service
 public class ProdutoService {
@@ -25,8 +26,10 @@ public class ProdutoService {
     }
 
     // Listar todos os produtos
-    public List<Produto> listarTodos() {
-        return produtoRepository.findAll();
+    public List<ProdutoDTO> listarTodos() {
+        return produtoRepository.findAll().stream()
+                .map(ProdutoDTO::new)
+                .collect(Collectors.toList());
     }
 
     // Salvar novo produto
@@ -78,12 +81,21 @@ public class ProdutoService {
     }
 
     // Buscar produtos cujo nome começa com uma letra (ignorando case)
-    public List<Produto> findByfindByNomeStartingWithIgnoreCase(String letra) {
+    public List<ProdutoDTO> findByfindByNomeStartingWithIgnoreCase(String letra) {
+        if(letra == null || letra.isEmpty()) {
+            throw new IllegalArgumentException("A letra não pode ser nula ou vazia");
+        }else if('0'<= letra.charAt(0) && letra.charAt(0) <= '9') {
+            throw new IllegalArgumentException("A letra não pode ser um número");
+        } else{
         if (letra.charAt(0) == '*') {
             letra = letra.substring(1);
         }
-        return produtoRepository.findByNomeStartingWithIgnoreCase(letra);
+        return produtoRepository.findByNomeStartingWithIgnoreCase(letra).stream()
+                .map(ProdutoDTO::new)
+                .collect(Collectors.toList());
+        }
     }
+
 
     // Contar número de produtos
     public int countProdutos() {
@@ -125,11 +137,15 @@ public class ProdutoService {
         
    public List<Produto> findByCategoriaNome(String nome) {
    // List<Categoria> categorias = categoriaRepository.findByNome(nome);
+   if(nome == null || nome.isEmpty()) {
+        throw new IllegalArgumentException("O nome da categoria não pode ser nulo ou vazio"); // condição para evitar erro
+    } else{
     return produtoRepository.findAll().stream()
             .filter(produto -> produto.getCategoria() != null &&
                                produto.getCategoria().getNome().equalsIgnoreCase(nome))
             .collect(Collectors.toList());
 }
+   }
 
 
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.example.teste_spring.model.Categoria;
+
+import com.example.teste_spring.dto.ProdutoDTO;
 import com.example.teste_spring.model.Produto;
 import com.example.teste_spring.service.ProdutoService;
 import com.example.teste_spring.repository.CategoriaRepository;
@@ -32,7 +34,7 @@ public ProdutoController(ProdutoService produtoService, CategoriaRepository cate
     }   
 
 @GetMapping("/listar")
-public List<Produto> listarTodos() {
+public List<ProdutoDTO> listarTodos() {
         return produtoService.listarTodos();
     }
 
@@ -58,7 +60,7 @@ public void deletarProduto(@PathVariable Long id) {
 }
 
 @GetMapping("/buscar/nome/{letra}")
-public List<Produto> buscarPorNome(@PathVariable String letra) {
+public List<ProdutoDTO> buscarPorNome(@PathVariable String letra) {
     return produtoService.findByfindByNomeStartingWithIgnoreCase(letra);
 }
 

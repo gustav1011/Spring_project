@@ -21,7 +21,7 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @Autowired
-    public CategoriaController(CategoriaService categoriaService) {
+    public CategoriaController(CategoriaService categoriaService) { // contrutor para injeção de dependência
         this.categoriaService = categoriaService;
     }
 

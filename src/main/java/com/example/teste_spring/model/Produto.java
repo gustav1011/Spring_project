@@ -13,6 +13,9 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Produto {
 
+    public Produto(long l, String string, double d, Object object) {
+    }
+
     public Produto() {
     }
 
