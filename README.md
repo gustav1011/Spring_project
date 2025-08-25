@@ -8,7 +8,7 @@ Este projeto faz parte de um estudo prático que estou desenvolvendo para consol
 - Spring Data JPA
 - Hibernate
 - Bean Validation (Jakarta Validation)
-- H2 Database (para ambiente de teste)
+- PostgreSQL
 - Maven
 
 ## 📚 Objetivo
