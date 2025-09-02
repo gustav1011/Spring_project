@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//import com.example.teste_spring.model.Categoria;
-
 import com.example.teste_spring.dto.ProdutoDTO;
 import com.example.teste_spring.model.Produto;
-import com.example.teste_spring.service.ProdutoService;
 import com.example.teste_spring.repository.CategoriaRepository;
+import com.example.teste_spring.service.ProdutoService;
 //import com.example.teste_spring.repository.ProdutoRepository;
 
 @RestController
@@ -70,7 +68,7 @@ public long contarProdutos() {
 }
 
 @GetMapping("/buscar/preco/min/{min}/max/{max}")
-public List<Produto> buscarPorPreco(@PathVariable Double min, @PathVariable Double max) {
+public List<ProdutoDTO> buscarPorPreco(@PathVariable Double min, @PathVariable Double max) {
     return produtoService.findByPrecoBetween(min, max);
 
 }
@@ -91,7 +89,7 @@ public List<Produto> buscarPorCategoriaId(@PathVariable Long id) {
 }
 
     @GetMapping("/buscar/categoria/nome/{nome}")
-    public List<Produto> buscarPorCategoriaNome(@PathVariable String nome) {
+    public List<ProdutoDTO> buscarPorCategoriaNome(@PathVariable String nome) {
         return produtoService.findByCategoriaNome(nome);
 }
 

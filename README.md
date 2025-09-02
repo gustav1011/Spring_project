@@ -1,6 +1,6 @@
 # 📌 Projeto de Estudo Prático - API de Produtos
 
-Este projeto faz parte de um estudo prático que estou desenvolvendo para consolidar meus conhecimentos em Java e Spring Framework, aplicando boas práticas de desenvolvimento e explorando o ciclo completo de criação de uma aplicação backend.
+Este projeto faz parte de um estudo prático que estou desenvolvendo para consolidar meus conhecimentos em Java e Spring Framework, aplicando boas práticas de desenvolvimento e explorando o ciclo completo de criação de uma aplicação backend com conexão a banco de dados e endpoints.
 
 ## 🛠️ Tecnologias Utilizadas
 - Java 17+

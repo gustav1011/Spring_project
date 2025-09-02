@@ -25,7 +25,7 @@ public class ProdutoServiceTest {
 
     @Test
     public void retornaProdutos(){
-        Produto produto1 = new Produto(1L, "Produto A", 10.0, null);
+        Produto produto1 = new Produto(1L, "Produto A", 10.0, null, null);
     System.out.println(produtoService.listarTodos());
 }
 

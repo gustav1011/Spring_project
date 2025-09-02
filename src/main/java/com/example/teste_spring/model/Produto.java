@@ -13,7 +13,8 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Produto {
 
-    public Produto(long l, String string, double d, Object object) {
+    public Produto(long l, String string, double d, Object object, Object object2) {
+
     }
 
     public Produto() {
@@ -33,6 +34,11 @@ public class Produto {
     @JoinColumn(name = "categoria_id")
     //@JsonIgnore
     private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
+
 
     // getters e setters
     public Long getId() {
@@ -65,5 +71,13 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+     public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 }

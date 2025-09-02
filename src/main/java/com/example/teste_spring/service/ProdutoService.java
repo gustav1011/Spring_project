@@ -6,11 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.teste_spring.model.Categoria;
-import com.example.teste_spring.model.Produto;
-import com.example.teste_spring.repository.ProdutoRepository;
-import com.example.teste_spring.repository.CategoriaRepository;
 import com.example.teste_spring.dto.ProdutoDTO;
+import com.example.teste_spring.model.Produto;
+import com.example.teste_spring.repository.CategoriaRepository;
+import com.example.teste_spring.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
@@ -103,7 +102,7 @@ public class ProdutoService {
     }
 
     // Buscar produtos por faixa de preço
-    public List<Produto> findByPrecoBetween(Double min, Double max) {
+    public List<ProdutoDTO> findByPrecoBetween(Double min, Double max) {
         if (min == null || max == null) {
             throw new IllegalArgumentException("Valores mínimos e máximos não podem ser nulos");
         }
@@ -111,8 +110,10 @@ public class ProdutoService {
             throw new IllegalArgumentException("O valor mínimo não pode ser maior que o máximo");
         }
 
-        return produtoRepository.findAll().stream()
-                .filter(produto -> produto.getPreco() != null &&
+        return produtoRepository.findAll()
+                .stream()
+                .map(ProdutoDTO::new)
+                .filter(produto ->
                                    produto.getPreco() >= min &&
                                    produto.getPreco() <= max)
                 .collect(Collectors.toList());
@@ -127,6 +128,8 @@ public class ProdutoService {
         return produtoRepository.save(produtoExistente);
     }
 
+
+    // Buscar produtos por categoria ID, método que verifica se a categoria existe(mais indicado para o adm, usuario não precisa saber o ID da categoria)
    public List<Produto> findByCategoria(Long categoriaId) {
         categoriaRepository.findById(categoriaId)
                 .orElseThrow(() -> new RuntimeException("Categoria não encontrada com o ID: " + categoriaId));
@@ -135,17 +138,15 @@ public class ProdutoService {
                 .collect(Collectors.toList());
    }
         
-   public List<Produto> findByCategoriaNome(String nome) {
-   // List<Categoria> categorias = categoriaRepository.findByNome(nome);
-   if(nome == null || nome.isEmpty()) {
-        throw new IllegalArgumentException("O nome da categoria não pode ser nulo ou vazio"); // condição para evitar erro
-    } else{
-    return produtoRepository.findAll().stream()
-            .filter(produto -> produto.getCategoria() != null &&
-                               produto.getCategoria().getNome().equalsIgnoreCase(nome))
+  public List<ProdutoDTO> findByCategoriaNome(String nome) {
+    if (nome == null || nome.isEmpty()) {
+        throw new IllegalArgumentException("O nome da categoria não pode ser nulo ou vazio");
+    }
+    return produtoRepository.findByCategoriaNome(nome)
+            .stream()
+            .map(ProdutoDTO::new)
             .collect(Collectors.toList());
 }
-   }
 
 
 
