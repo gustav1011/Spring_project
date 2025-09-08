@@ -1,5 +1,6 @@
 package com.example.teste_spring.service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,14 @@ public class FornecedorService {
         return fornecedorRepository.findAll();
     }
 
-    
-    
+    public List<Fornecedor> listarFornecedoresPorCidade(String cidade) {
+        return FornecedorRepository.listarFornecedores()
+                .stream()
+                .filter(fornecedor -> fornecedor.getCidade().equalsIgnoreCase(cidade))
+                .collect(Collectors.toList());
+    }        
 }
+
+    
+    
+
