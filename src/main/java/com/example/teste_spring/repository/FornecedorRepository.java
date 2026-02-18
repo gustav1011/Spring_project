@@ -13,6 +13,9 @@ public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
     List<Fornecedor> listarFornecedoresPorCidade(String cidade);
 
+    List<Fornecedor> findByCidade(String cidade);
+
+
     static Collection<Fornecedor> listarFornecedores() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listarFornecedores'");

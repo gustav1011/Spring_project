@@ -23,12 +23,12 @@ import com.example.teste_spring.service.ProdutoService;
 public class ProdutoController {
 
 private final ProdutoService produtoService;
-private final CategoriaRepository categoriaRepository;
+//private final CategoriaRepository categoriaRepository;
 
 @Autowired
 public ProdutoController(ProdutoService produtoService, CategoriaRepository categoriaRepository) {
         this.produtoService = produtoService;
-        this.categoriaRepository = categoriaRepository;
+   //     this.categoriaRepository = categoriaRepository;
     }   
 
 @GetMapping("/listar")
