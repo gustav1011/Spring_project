@@ -1,10 +1,12 @@
 package com.example.teste_spring.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.teste_spring.repository.CategoriaRepository;
+
 import com.example.teste_spring.model.Categoria;
-import java.util.List;
+import com.example.teste_spring.repository.CategoriaRepository;
 
 @Service
 public class CategoriaService {
@@ -23,5 +25,7 @@ public class CategoriaService {
     public List<Categoria> listarTodasCategorias() {
         return categoriaRepository.findAll();
     }
+
+    
     
 }

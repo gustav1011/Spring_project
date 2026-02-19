@@ -1,6 +1,6 @@
 # 📌 Projeto de Estudo Prático - API de Produtos
 
-Este projeto faz parte de um estudo prático que estou desenvolvendo para consolidar meus conhecimentos em Java e Spring Framework, aplicando boas práticas de desenvolvimento e explorando o ciclo completo de criação de uma aplicação backend com conexão a banco de dados e endpoints.
+Este projeto faz parte de um estudo prático que estou desenvolvendo para consolidar meus conhecimentos em Java e Spring Framework, aplicando boas práticas de desenvolvimento e explorando o ciclo completo de criação de uma aplicação backend com conexão a banco de dados com dados mockados e endpoints.
 
 ## 🛠️ Tecnologias Utilizadas
 - Java 17+
@@ -10,6 +10,7 @@ Este projeto faz parte de um estudo prático que estou desenvolvendo para consol
 - Bean Validation (Jakarta Validation)
 - PostgreSQL
 - Maven
+- Postman
 
 ## 📚 Objetivo
 - Praticar a organização em camadas: Controller → Service → Repository → Model.  

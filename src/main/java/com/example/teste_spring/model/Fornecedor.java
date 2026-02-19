@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -29,9 +28,9 @@ public class Fornecedor {
     @Column(name = "nome_fornecedor", nullable = false, length = 100)
     private String nomeFornecedor;
 
-    @NotNull(message = "O telefone é obrigatório")
     // Aceita apenas números com 10 a 11 dígitos (fixo ou celular)
     @Pattern(regexp = "\\d{10,11}", message = "O telefone deve ter 10 ou 11 dígitos numéricos")
+    @NotBlank(message = "O telefone é obrigatório")
     private String telefone;
 
     @NotBlank(message = "O e-mail é obrigatório")
