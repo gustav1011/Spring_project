@@ -16,7 +16,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Fornecedor {
 
-    public Fornecedor() {}
+    public Fornecedor() {} //contrutor vazio para JPA
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

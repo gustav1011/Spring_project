@@ -23,7 +23,7 @@ public class Categoria {
 
     @Column(name = "nome_categoria", nullable = false, length = 100)
     private String nome;
-
+ 
     @OneToMany(mappedBy = "categoria") 
     @JsonIgnoreProperties("categoria") // <- resolve o loop sem quebrar input
     private List<Produto> produtos;

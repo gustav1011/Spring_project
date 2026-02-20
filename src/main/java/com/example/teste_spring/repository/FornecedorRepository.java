@@ -14,6 +14,10 @@ public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
     List<Fornecedor> findByCidade(String cidade);
 
+    //public List<Fornecedor> listarPorId(Long id);
+
+    //List<Fornecedor> findByPrimeiraLetra(String letra);
+
 
    
 

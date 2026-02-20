@@ -39,6 +39,13 @@ public Fornecedor salvar(@RequestBody @Valid Fornecedor fornecedor) {
         return fornecedorService.listarFornecedoresPorCidade(cidade);
     }
 
+    @GetMapping("/listar/id/{id}")
+    public Fornecedor listarPorId(@PathVariable Long id) {
+        return fornecedorService.buscarPorId(id);
+    }
+
+
+
 
     
 }

@@ -29,7 +29,10 @@ public class Produto {
 
     @Column(name = "preco", nullable = true)
     private Double preco;
-    
+
+    @Column(columnDefinition = "TEXT")
+    private String descricao;
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     //@JsonIgnore
@@ -79,5 +82,13 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }

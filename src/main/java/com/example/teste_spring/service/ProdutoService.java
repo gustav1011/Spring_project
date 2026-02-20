@@ -148,6 +148,16 @@ public class ProdutoService {
             .collect(Collectors.toList());
 }
 
+ public String salvarDescricao(String nome,String descricao){
+    Produto produtoExistente = produtoRepository.findByNome(nome);
+    if (produtoExistente == null) {
+        throw new RuntimeException("Produto não encontrado com o nome: " + nome);
+    }
+    produtoExistente.setDescricao(descricao);
+    produtoRepository.save(produtoExistente);
+    return "Descrição atualizada com sucesso!"; 
+ }
+
 
 
 }

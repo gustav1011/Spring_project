@@ -93,6 +93,10 @@ public List<Produto> buscarPorCategoriaId(@PathVariable Long id) {
         return produtoService.findByCategoriaNome(nome);
 }
 
+@PatchMapping("/atualizar/descricao/{nome}")
+public String atualizarDescricao(@PathVariable String nome, @RequestBody ProdutoDTO produtoDTO) {
+    return produtoService.salvarDescricao(nome, produtoDTO.getDescricao());
+}
 }
 
 

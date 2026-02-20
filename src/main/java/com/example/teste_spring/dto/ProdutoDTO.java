@@ -7,14 +7,19 @@ public class ProdutoDTO {
     private String nome;
     private Double preco;
     private String categoriaNome;
+    private String descricao;
 
     public ProdutoDTO(Produto produto) {
         //this.id = produto.getId();
         this.nome = produto.getNome();
         this.preco = produto.getPreco();
+        this.descricao = produto.getDescricao();
         this.categoriaNome = (produto.getCategoria() != null) 
                 ? produto.getCategoria().getNome() 
                 : null;
+    }
+
+    public ProdutoDTO() {
     }
 
     public String getNome() {
@@ -25,11 +30,11 @@ public class ProdutoDTO {
         this.nome = nome;
     }
 
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
@@ -39,6 +44,14 @@ public class ProdutoDTO {
 
     public void setCategoriaNome(String categoriaNome) {
         this.categoriaNome = categoriaNome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     // getters e setters

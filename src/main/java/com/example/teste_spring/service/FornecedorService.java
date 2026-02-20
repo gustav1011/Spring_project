@@ -29,6 +29,13 @@ public class FornecedorService {
         return fornecedorRepository.findByCidade(cidade);
     }
 
+ public Fornecedor buscarPorId(Long id) {
+    return fornecedorRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Fornecedor não encontrado"));
+}
+
+    
+
            
 }
 
