@@ -88,9 +88,9 @@ public List<Produto> buscarPorCategoriaId(@PathVariable Long id) {
     return produtoService.findByCategoria(id);
 }
 
-    @GetMapping("/buscar/categoria/nome/{nome}")
-    public List<ProdutoDTO> buscarPorCategoriaNome(@PathVariable String nome) {
-        return produtoService.findByCategoriaNome(nome);
+@GetMapping("/buscar/categoria/nome/{nome}")
+public List<ProdutoDTO> buscarPorCategoriaNome(@PathVariable String nome) {
+    return produtoService.findByCategoriaNome(nome);
 }
 
 @PatchMapping("/atualizar/descricao/{nome}")

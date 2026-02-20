@@ -26,6 +26,13 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
+    public void deletarCategoria(Long id) {
+       Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada com o ID: " + id));
+        categoriaRepository.delete(categoria);
+        System.out.println("Categoria com ID " + id + " deletada com sucesso.");
+    }
+
     
     
 }

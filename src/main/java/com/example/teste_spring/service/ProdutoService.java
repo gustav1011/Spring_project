@@ -143,9 +143,9 @@ public class ProdutoService {
         throw new IllegalArgumentException("O nome da categoria não pode ser nulo ou vazio");
     }
     return produtoRepository.findByCategoriaNome(nome)
-            .stream()
-            .map(ProdutoDTO::new)
-            .collect(Collectors.toList());
+                            .stream()
+                            .map(ProdutoDTO::new)
+                            .collect(Collectors.toList());
 }
 
  public String salvarDescricao(String nome,String descricao){
